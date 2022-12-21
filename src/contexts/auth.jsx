@@ -1,11 +1,14 @@
 import { createContext, useEffect, useState } from "react";
+import data from '../requests/axios';
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({children}) => {
   const [user, setUser] = useState();
-
+  const [dataUp, setDataUp] = useState();
+  
   useEffect(() => {
+    setDataUp(data)
     const userToken = localStorage.getItem("user_token");
     let usersStorage = localStorage.getItem("users_db");
     
@@ -17,7 +20,6 @@ export const AuthProvider = ({children}) => {
     };
   
   }, []);
-  
   const signin = (email, password) => {
     const usersStorage = JSON.parse(localStorage.getItem("users_db"));
 
@@ -66,7 +68,7 @@ export const AuthProvider = ({children}) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, signed: !!user, signin, signup, signout }}
+      value={{ user, signed: !!user, signin, signup, signout, dataUp }}
     >
     {children}
     </AuthContext.Provider>

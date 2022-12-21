@@ -5,7 +5,6 @@ import * as C from './styles';
 import {Link, useNavigate} from "react-router-dom";
 import useAuth from '../../hooks/useAuth'
 
-
 function SignIn() {
   const {signin} = useAuth();
   const navigate = useNavigate();
@@ -19,7 +18,9 @@ function SignIn() {
       seteError("Preencha todos os campos");
       return;
     }
+
     const res = signin(email, senha);
+
     if(res){
       seteError(res);
       return;

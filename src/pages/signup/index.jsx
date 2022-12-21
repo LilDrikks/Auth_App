@@ -4,6 +4,7 @@ import Button from  "../../components/Button";
 import * as C from './styles';
 import {Link, useNavigate} from "react-router-dom";
 import useAuth from '../../hooks/useAuth';
+import { signInPost } from '../../requests/axios';
 
 function SignUp() {
   const {signup} = useAuth();
@@ -23,7 +24,8 @@ function SignUp() {
       seteError("Os E-mails não são iguais");
       return;
     }
-
+    
+    signInPost(email, senha)
     const res = signup(email, senha);
 
     if(res) {
