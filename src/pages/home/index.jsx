@@ -5,9 +5,9 @@ import Button from "../../components/Button"
 import useAuth from "../../hooks/useAuth"
 
 function Home() {
-  const {signout, dataUp} = useAuth();
+  const {signout} = useAuth();
   const navigate = useNavigate();
-  console.log(dataUp);
+
   return (
    <C.Container>
     <C.Title>Home</C.Title>

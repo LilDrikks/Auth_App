@@ -4,6 +4,7 @@ import Button from  "../../components/Button";
 import * as C from './styles';
 import {Link, useNavigate} from "react-router-dom";
 import useAuth from '../../hooks/useAuth'
+import { requestAPI } from '../../requests/axios';
 
 function SignIn() {
   const {signin} = useAuth();
@@ -13,18 +14,26 @@ function SignIn() {
   const [senha, setSenha] = useState('');
   const [error, seteError] = useState('');
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if(!email || !senha){
       seteError("Preencha todos os campos");
       return;
     }
 
+    const resApi = await requestAPI(email, senha)
     const res = signin(email, senha);
 
-    if(res){
-      seteError(res);
-      return;
+    if(resApi.message === 'Conectado com sucesso!'){
+      console.log(resApi.message)
     }
+    else if(resApi.message === 'E-mail ou senha incorretos'){
+      console.log(resApi.message)
+      if(res){
+        seteError(res);
+        return;
+      }
+    }
+
     navigate("/home");
   }
 
