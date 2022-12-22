@@ -23,7 +23,7 @@ function SignUp() {
       seteError('Os E-mails não são iguais')
       return
     }
-
+    
     signInPost(email, senha)
     const res = signup(email, senha)
 
