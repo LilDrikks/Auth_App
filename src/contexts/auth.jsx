@@ -8,6 +8,7 @@ export const AuthProvider = ({children}) => {
   useEffect(() => {
 
     const userToken = localStorage.getItem("user_token");
+    console.log(userToken)
     if(userToken){
       const userLog = JSON.parse(userToken)
       if(userLog.token){
@@ -15,7 +16,7 @@ export const AuthProvider = ({children}) => {
       }
     }
 
-  }, []);
+  }, [user]);
   
 
   const signout = () => {
