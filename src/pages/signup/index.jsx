@@ -3,36 +3,37 @@ import Input from '../../components/Input'
 import Button from '../../components/Button'
 import * as C from './styles'
 import { Link, useNavigate } from 'react-router-dom'
-import useAuth from '../../hooks/useAuth'
-import { signInPost } from '../../requests/axios'
+import { signUpPost } from '../../requests/axios'
 
 function SignUp() {
-  const { signup } = useAuth()
   const navigate = useNavigate()
 
   const [email, setEmail] = useState('')
   const [emailConf, setEmailConf] = useState('')
   const [senha, setSenha] = useState('')
   const [error, seteError] = useState('')
+  
+  
+  const handleSignup = async () => {
 
-  const handleSignup = () => {
     if (!email || !emailConf || !senha) {
       seteError('Preencha todos os campos')
       return
     } else if (email != emailConf) {
+      
       seteError('Os E-mails não são iguais')
       return
     }
-    
-    signInPost(email, senha)
-    const res = signup(email, senha)
 
-    if (res) {
-      seteError(res)
+    let resUser = await signUpPost(email, senha)
+    
+    if(resUser.true){
+      alert(resUser.message)
+      navigate('/')
       return
     }
-    alert('Usuário cadastrado com sucesso!')
-    navigate('/')
+    seteError(resUser)
+    
   }
 
   return (

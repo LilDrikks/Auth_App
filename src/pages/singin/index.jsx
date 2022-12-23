@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import * as C from "./styles";
+import useAuth from "../../hooks/useAuth"
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
-import { requestAPI } from "../../requests/axios";
+import { signInPut } from "../../requests/axios";
 
 function SignIn() {
-  const { signin } = useAuth();
+  const {setUser} = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, seteError] = useState("");
+
+  
 
   const handleLogin = async () => {
     if (!email || !senha) {
@@ -20,20 +22,18 @@ function SignIn() {
       return;
     }
 
-    const resApi = await requestAPI(email, senha);
-    const res = signin(email, senha);
+    const createUser = await signInPut(email, senha);
 
-    if (resApi.message === "Conectado com sucesso!") {
-      console.log(resApi.message);
-    } else if (resApi.message === "E-mail ou senha incorretos") {
-      console.log(resApi.message);
-      if (res) {
-        seteError(res);
-        return;
-      }
+    if(createUser.err){
+      seteError(createUser.err)
+      return
     }
-
-    navigate("/home");
+    if(createUser.token){
+      const {token, email} = createUser
+      setUser({email:email, token: token})
+      localStorage.setItem("user_token", JSON.stringify({email,token}));
+      navigate("/home");
+    }
   };
 
   return (
