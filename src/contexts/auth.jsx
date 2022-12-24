@@ -4,61 +4,19 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({children}) => {
   const [user, setUser] = useState();
-  const [dataUp, setDataUp] = useState();
   
   useEffect(() => {
 
     const userToken = localStorage.getItem("user_token");
-    let usersStorage = localStorage.getItem("users_db");
-    
-    if(userToken && usersStorage){
-      const hasUser = JSON.parse(usersStorage)?.filter(
-        (user) => user.email === JSON.parse(userToken).email
-      );
-      if(hasUser) setUser(hasUser[0])
-    };
-  
-  }, []);
-  const signin = (email, password) => {
-    const usersStorage = JSON.parse(localStorage.getItem("users_db"));
-
-    const hasUser = usersStorage?.filter((user) => user.email === email);
-
-    if(hasUser?.length){
-      if(hasUser[0].email === email && hasUser[0].password === password){
-        const token = Math.random().toString(36).substring(2);
-        localStorage.setItem("user_token", JSON.stringify({email,token}));
-        setUser({email, password});
-        return;
-      }else{
-        return "E-mail ou senha incorretos";
+    if(userToken){
+      const userLog = JSON.parse(userToken)
+      if(userLog.token){
+        setUser({email: userLog.email, token: userLog.token})
       }
-    } else {
-      return "Usuário não cadastrado";
-    }
-  };
-
-  const signup = (email, password) => {
-    const usersStorage = JSON.parse(localStorage.getItem("users_db"));
-
-    const hasUser = usersStorage?.filter((user) => user.email === email);
-
-    if(hasUser?.length){
-      return "Já existe uma conta com este E-mail";
     }
 
-    let newUser;
-
-    if(usersStorage){
-      newUser = [...usersStorage, {email, password}];
-    }else{
-      newUser = [{email, password}];
-    }
-
-    localStorage.setItem("users_db", JSON.stringify(newUser));
-
-    return;
-  };
+  }, []);
+  
 
   const signout = () => {
     setUser(null)
@@ -67,7 +25,7 @@ export const AuthProvider = ({children}) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, signed: !!user, signin, signup, signout, dataUp }}
+      value={{setUser, user, signed: !!user, signout }}
     >
     {children}
     </AuthContext.Provider>
