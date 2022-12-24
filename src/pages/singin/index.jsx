@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import * as C from "./styles";
@@ -13,19 +13,6 @@ function SignIn() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, seteError] = useState("");
-  
-  useEffect(() => {
-
-    const userToken = localStorage.getItem("user_token");
-    if(userToken){
-      const userLog = JSON.parse(userToken)
-      if(userLog.token){
-        setUser({email: userLog.email, token: userLog.token})
-      }
-    }
-
-  }, []);
-
   
 
   const handleLogin = async () => {

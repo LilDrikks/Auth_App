@@ -16,7 +16,6 @@ export const AuthProvider = ({children}) => {
     }
 
   }, []);
-  
 
   const signout = () => {
     setUser(null)
@@ -25,7 +24,7 @@ export const AuthProvider = ({children}) => {
 
   return (
     <AuthContext.Provider
-      value={{setUser, user, signed: !!user, signout }}
+      value={{setUser, signed: user ? true : false , signout }}
     >
     {children}
     </AuthContext.Provider>
