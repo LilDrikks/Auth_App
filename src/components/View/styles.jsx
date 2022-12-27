@@ -5,6 +5,6 @@ export const View = styled.div`
   margin: 20px 20px 0px 0px;
   border-radius: 5px;
   height: 100%;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
 `;

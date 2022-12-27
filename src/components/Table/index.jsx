@@ -27,7 +27,7 @@ function Table() {
     <C.Table>
       <C.SideBar>
         <C.Logo>
-          <TbLetterS size={50} color={"white"} />
+          <TbLetterS size={40} color={"black"} />
         </C.Logo>
         <ItemSideBar text={"Lista de moradores"} icon={listUl} id={0} setView={setView} />
         <ItemSideBar text={"Notificação de encomendas"} icon={dropbox} id={1} setView={setView} />

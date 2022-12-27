@@ -11,7 +11,9 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-  
+  color: white;
+  background-color: rgba(0,0,0,0.5);
+  padding:10px;
 `;
 
 export const Header = styled.div`

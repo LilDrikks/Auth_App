@@ -11,7 +11,7 @@ function ItemSideBar(props) {
 
   return (
     <C.Item onClick={()=>changeView(id)}>
-    <Icon icon={props.icon} size={40} style={{color:'#ffffff'}} />
+    <Icon icon={props.icon} size={25} style={{color:'black'}} />
     <span>{props.text}</span>
     </C.Item>
   )
