@@ -7,12 +7,15 @@ export const Button = styled.button`
   border-radius: 5px;
   width: 100%;
   cursor: pointer;
-  background-color: #046ee5;
+  background-color: rgb(66,135,246);
   color: white;
   font-weight: 600;
   font-size: 16px;
   max-width: 350px;
   &:hover{
-    background-color: #217de7;
+    background-color:#046ee5;
+  }
+  @media (max-width: 1200px) {
+      width:100px;
   }
 `;
