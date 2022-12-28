@@ -10,10 +10,8 @@ export const Container = styled.div`
   padding-top: 20px;
 `;
 
-export const Title = styled.h2`
-  color: white;
-  background-color: rgba(0,0,0,0.5);
-  padding:10px;
+export const Title = styled.h1`
+
 `;
 
 export const Header = styled.div`

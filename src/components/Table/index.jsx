@@ -6,7 +6,7 @@ import { dropbox } from "react-icons-kit/fa/dropbox";
 import { bell } from "react-icons-kit/fa/bell";
 import { ic_date_range } from "react-icons-kit/md/ic_date_range";
 import { useEffect, useState } from "react";
-import View from "../View";
+import {View1, View2, View3 ,View4} from "../View";
 
 function Table() {
   const [view, setView] = useState("");
@@ -17,10 +17,10 @@ function Table() {
   
 
   const views = [
-  <View key={0} text={"view1"}/>,
-  <View key={1} text={"view2"}/>,
-  <View key={2} text={"view3"}/>,
-  <View key={3} text={"view4"}/>,
+  <View1 key={0}/>,
+  <View2 key={1}/>,
+  <View3 key={2}/>,
+  <View4 key={3}/>,
   ]  
 
   return (
