@@ -26,7 +26,7 @@ export const signUpPost = async (email, password) => {
 
 export const data = [
   {bloco: "A", aptos: [
-    {apto: 11, moradores:['a','b']},
+    {apto: 11, moradores:['a','b','c']},
     {apto: 12, moradores:['a','b']},
     {apto: 13, moradores:['a','b']},
     {apto: 14, moradores:['Luana','Bruno']},

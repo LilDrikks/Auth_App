@@ -2,16 +2,13 @@ import React, { useState } from 'react'
 import * as C from './styles'
 import { data } from '../../requests/axios'
 import Input from '../Input'
-import Button from '../Button'
-import {search} from 'react-icons-kit/fa/search'
-import Icon from 'react-icons-kit';
 
 
 export function View1() {
   const [filter, setFilter] = useState('')
 
-  const dataFilter = data[0].aptos.filter((apto) => String(apto.apto).includes(filter))
-
+  const aptoFilter = data[0].aptos.filter((apto) => (String(apto.apto).includes(filter)))
+  
   return (
     <C.View>
       <C.Subtitle>
@@ -23,13 +20,13 @@ export function View1() {
             type="text"
             placeholder="Número do Ap..."
             value={filter}
-            onChange={(e) => [setFilter(e.target.value)]}
+            onChange={(e) => [setFilter(e.target.value.toLowerCase())]}
             maxLength={2}
         />
       </C.Filter>
       <C.containerAptos>
         {
-          dataFilter.map((apto, index) => (
+          aptoFilter.map((apto, index) => (
             
             <C.CardApto  key={index}>
               <h3>Apto {apto.apto}</h3>

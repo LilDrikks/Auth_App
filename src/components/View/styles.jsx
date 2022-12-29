@@ -20,7 +20,9 @@ export const CardApto = styled.div`
   border-radius: 5px;
   color: white;
   padding: 10px;
-  min-width: 300px;
+  flex-grow: 1;
+  width: 40%;
+  height: 160px;
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.1),
@@ -32,6 +34,9 @@ export const CardApto = styled.div`
   p {
     padding: 4px;
   }
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 export const containerAptos = styled.div`
@@ -40,7 +45,7 @@ export const containerAptos = styled.div`
   flex-wrap: wrap;
   gap: 20px;
   width: 100%;
-  justify-content: center;
+
   background-image: url(${background});
 `;
 
@@ -48,7 +53,11 @@ export const Filter = styled.div`
   display: flex;
   gap: 20px;
   margin: 10px;
+  input{
+  width: 300px;
+  }
   input:focus{
     color: white;
+    
   }
 `;
