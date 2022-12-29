@@ -38,7 +38,7 @@ export const containerAptos = styled.div`
   gap: 20px;
   width: 100%;
   justify-content: center;
-  background-image: url("public/background.jpg");
+  background-image: url("../public/background.jpg");
 `;
 
 export const Filter = styled.div`
