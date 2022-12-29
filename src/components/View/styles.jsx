@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import background from "../../../public/background.jpg"
 export const View = styled.div`
   width: 100%;
   margin: 20px 20px 0px 0px;
@@ -38,7 +38,7 @@ export const containerAptos = styled.div`
   gap: 20px;
   width: 100%;
   justify-content: center;
-  background-image: url("../public/background.jpg");
+  background-image: url(${background});
 `;
 
 export const Filter = styled.div`
