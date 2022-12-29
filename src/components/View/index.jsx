@@ -7,7 +7,7 @@ import Input from '../Input'
 export function View1() {
   const [filter, setFilter] = useState('')
 
-  const aptoFilter = data[0].aptos.filter((apto) => (String(apto.apto).includes(filter)))
+  const aptoFilter = data[0].aptos.filter((apto) => (String(apto.apto).includes(filter) || apto.moradores.includes(filter)))
   
   return (
     <C.View>
@@ -20,14 +20,13 @@ export function View1() {
             type="text"
             placeholder="Número do Ap..."
             value={filter}
-            onChange={(e) => [setFilter(e.target.value.toLowerCase())]}
-            maxLength={2}
+            onChange={(e) => [setFilter(e.target.value)]}
+            maxLength={20}
         />
       </C.Filter>
       <C.containerAptos>
         {
           aptoFilter.map((apto, index) => (
-            
             <C.CardApto  key={index}>
               <h3>Apto {apto.apto}</h3>
               {apto.moradores.map((morador, index) => <p key={index}>{morador}</p>)}
