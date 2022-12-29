@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100vh;
     background-color: #e7e7e7;
     font-family: Arial, Helvetica, sans-serif;
+    
   }
 `;
 

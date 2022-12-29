@@ -6,6 +6,9 @@ export const Table = styled.div`
   height: 100%;
   margin: 0px 20px;
   display: flex;
+  @media (max-width: 500px) {
+    flex-direction: column;    
+  }
 `;
 
 export const SideBar = styled.div`
@@ -19,6 +22,13 @@ export const SideBar = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 5px;
+  @media (max-width: 500px) {
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+    justify-content: center;
+
+  }
 `;
 
 export const Logo = styled.span`

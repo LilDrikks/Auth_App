@@ -19,16 +19,12 @@ export function View1() {
       </C.Subtitle>
       <C.Subtitle>Bloco: {data[0].bloco}</C.Subtitle>
       <C.Filter>
-      <Input
-          type="text"
-          placeholder="Número do Ap..."
-          value={filter}
-          onChange={(e) => [setFilter(e.target.value)]}
-          maxLength={2}
-        />
-        <Button
-          onClick={() => console.log(filter)}
-          Text={<Icon icon={search} size={25} style={{color:'white'}} />}
+        <Input
+            type="text"
+            placeholder="Número do Ap..."
+            value={filter}
+            onChange={(e) => [setFilter(e.target.value)]}
+            maxLength={2}
         />
       </C.Filter>
       <C.containerAptos>
