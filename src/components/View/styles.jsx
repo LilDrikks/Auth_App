@@ -7,6 +7,9 @@ export const View = styled.div`
   height: 100%;
   background-color: white;
   color: black;
+  @media (max-width: 500px) {
+    margin: 0;
+  }
 `;
 export const Subtitle = styled.h2`
   margin: 10px;

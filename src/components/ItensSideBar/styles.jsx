@@ -55,8 +55,8 @@ export const Item = styled.div`
     transition: opacity 0.3s;
     font-size: 14px;
     @media (max-width: 500px) {
-      bottom: 80%;
-      left: 210%;
+      bottom: 110%;
+      left: 50%;
     }
   }
 
@@ -69,6 +69,10 @@ export const Item = styled.div`
     border-width: 5px;
     border-style: solid;
     border-color: #555 transparent transparent transparent;
+    @media (max-width: 500px) {
+      top: 100%;
+      left: 50%;
+    }
   }
 
   &:hover span {

@@ -16,7 +16,6 @@ export const Title = styled.h1`
 
 export const Header = styled.div`
   width: 100%;
-  max-width: 1440px;
   display: flex;
   justify-content: space-between;
   align-items: center;
