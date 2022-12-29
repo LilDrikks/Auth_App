@@ -5,7 +5,6 @@ export const Table = styled.div`
   width: 100%;
   height: 100%;
   margin: 0px 20px;
-  background-color: #5e5d5d;
   display: flex;
 `;
 
