@@ -1,12 +1,19 @@
 import { createContext, useEffect, useState } from "react";
+import { getAptos } from "../requests/axios";
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({children}) => {
   const [user, setUser] = useState();
+  const [data, setData] = useState([])
   
-  useEffect(() => {
+  const handleGetAptos = async () => {
+    const dados = await getAptos()
+    setData(dados.aptos)
+  }
 
+  useEffect(() => {
+    handleGetAptos()
     const userToken = localStorage.getItem("user_token");
     if(userToken){
       const userLog = JSON.parse(userToken)
@@ -24,7 +31,7 @@ export const AuthProvider = ({children}) => {
 
   return (
     <AuthContext.Provider
-      value={{setUser, signed: user ? true : false , signout }}
+      value={{setUser, signed: user ? true : false , signout, data }}
     >
     {children}
     </AuthContext.Provider>

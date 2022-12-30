@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import background from "../../../public/background.jpg"
+import background from "/src/background.jpg"
 export const View = styled.div`
   width: 100%;
   margin: 20px 20px 0px 0px;
