@@ -7,7 +7,9 @@ export function View1() {
   const {data} = useAuth();
   const [filter, setFilter] = useState('')
 
-  const filtro = (apto, nome) => apto.moradores.some((morador) => morador.nome.toLowerCase().includes(nome)) || String(apto.apto).includes(filter)
+  const filtro = (apto, nome) => 
+  apto.moradores.some((morador) => morador.nome.toLowerCase().includes(nome.toLowerCase()))
+  || String(apto.apto).includes(filter)
 
   const aptoFilter = data
     .filter((apto) => filtro(apto, filter))

@@ -16,7 +16,7 @@ function Home() {
           <C.Title>Home</C.Title>
           <Button Text="Sair" onClick={() => [signout(), navigate("/")]} />
         </C.Header>
-        <Table></Table>
+        <Table />
       </C.Container>
       
     </>

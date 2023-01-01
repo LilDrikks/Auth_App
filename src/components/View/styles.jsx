@@ -51,6 +51,7 @@ export const containerAptos = styled.div`
 
 export const Filter = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 20px;
   margin: 10px;
   input{
