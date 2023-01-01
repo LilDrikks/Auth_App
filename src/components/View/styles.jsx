@@ -9,11 +9,14 @@ export const View = styled.div`
   color: black;
   @media (max-width: 500px) {
     margin: 0;
+    display: flex;
+    flex-direction: column;
   }
 `;
 export const Subtitle = styled.h2`
   margin: 10px;
   font-size: 34px;
+  align-self: center;
 `;
 
 export const CardApto = styled.div`
@@ -45,8 +48,11 @@ export const containerAptos = styled.div`
   flex-wrap: wrap;
   gap: 20px;
   width: 100%;
-
   background-image: url(${background});
+  @media (max-width: 500px) {
+    height:540px;
+    overflow: scroll;
+  } 
 `;
 
 export const Filter = styled.div`
@@ -60,5 +66,8 @@ export const Filter = styled.div`
   input:focus{
     color: white;
     
+  }
+  @media (max-width: 500px) {
+    align-self: center;
   }
 `;

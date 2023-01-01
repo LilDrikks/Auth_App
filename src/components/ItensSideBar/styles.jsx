@@ -36,7 +36,7 @@ export const Item = styled.div`
   cursor: pointer;
   position: relative;
   :hover {
-    background-color: #ffffff49;
+    background-color: #08010122;
   }
   span {
     visibility: hidden;

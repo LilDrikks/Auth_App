@@ -1,19 +1,21 @@
 import styled from "styled-components";
 
 export const Table = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 100%;
   margin: 0px 20px;
   display: flex;
   @media (max-width: 500px) {
-    flex-direction: column; 
+    flex-direction: column;
+    width: 90%;
   }
 `;
 
 export const SideBar = styled.div`
-  margin: 20px;
+  margin-bottom: 20px;
   padding: 10px;
   width: 90px;
+  margin: 20px;
   gap: 10px;
   height: 100%;
   background-color: white;
@@ -23,11 +25,10 @@ export const SideBar = styled.div`
   border-radius: 5px;
   @media (max-width: 500px) {
     flex-direction: row;
-    width: 100%;
-    margin: 0;
-    margin-bottom: 20px;
+     width: 100%;
+     margin: 0;
+     margin-bottom: 20px;
     justify-content: center;
-
   }
 `;
 
