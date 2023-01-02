@@ -9,6 +9,7 @@ export const Container = styled.div`
   height: 100%;
   padding-top: 20px;
   width: 100%;
+  position: relative;
 `;
 
 export const Title = styled.h1`

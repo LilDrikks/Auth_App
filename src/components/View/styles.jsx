@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import background from "/src/background.jpg"
+import background from "/src/background.jpg";
 export const View = styled.div`
   width: 100%;
   margin: 20px 20px 0px 0px;
@@ -20,6 +20,8 @@ export const Subtitle = styled.h2`
 `;
 
 export const CardApto = styled.div`
+  display: flex;
+  justify-content: space-between;
   border-radius: 5px;
   color: white;
   padding: 10px;
@@ -34,6 +36,13 @@ export const CardApto = styled.div`
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0px 8px 32px 0px rgba(0, 0, 0, 0.1);
+  &:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(43, 42, 42, 0.568),
+      rgba(255, 255, 255, 0)
+    );
+  }
   p {
     padding: 4px;
   }
@@ -50,9 +59,9 @@ export const containerAptos = styled.div`
   width: 100%;
   background-image: url(${background});
   @media (max-width: 500px) {
-    height:540px;
+    height: 540px;
     overflow: scroll;
-  } 
+  }
 `;
 
 export const Filter = styled.div`
@@ -60,14 +69,15 @@ export const Filter = styled.div`
   flex-direction: column;
   gap: 20px;
   margin: 10px;
-  input{
-  width: 300px;
+  input {
+    width: 300px;
   }
-  input:focus{
+  input:focus {
     color: white;
-    
   }
   @media (max-width: 500px) {
     align-self: center;
   }
 `;
+
+export const editButton = styled.button``;

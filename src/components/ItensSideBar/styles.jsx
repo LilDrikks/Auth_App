@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Item = styled.div`
+export const Item = styled.button`
   position: relative;
   width: 60px;
   height: 60px;
@@ -36,7 +36,7 @@ export const Item = styled.div`
   cursor: pointer;
   position: relative;
   :hover {
-    background-color: #08010122;
+    background-color: #d6d6d6d8;
   }
   span {
     visibility: hidden;

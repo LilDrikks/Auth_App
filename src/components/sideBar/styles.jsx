@@ -1,16 +1,5 @@
 import styled from "styled-components";
 
-export const Table = styled.div`
-  width: 100vw;
-  height: 100%;
-  margin: 0px 20px;
-  display: flex;
-  @media (max-width: 500px) {
-    flex-direction: column;
-    width: 90%;
-  }
-`;
-
 export const SideBar = styled.div`
   margin-bottom: 20px;
   padding: 10px;
