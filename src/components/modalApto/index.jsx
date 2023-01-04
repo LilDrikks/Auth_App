@@ -6,19 +6,21 @@ import Icon from 'react-icons-kit'
 import useAuth from '../../hooks/useAuth'
 
 function Modal() {
+  
   const { setModal, moradores } = useAuth()
-
-  const changeNome = (value, index) => {
-    let newMoradores = moradores
-    newMoradores[2][index] = value
-    console.log(newMoradores[2][index]);
-  }
-
+  console.log(moradores[2][1])
   return (
     <C.ModalApto>
       <C.Moradores>
-        <div>{moradores[0]}{moradores[1]}</div>
-        {moradores[2].map((nome, index) => <input key={index} type={'text'} value={nome.nome} onChange={(e) => changeNome(e.target.value, index)} />)}
+        <C.Apto>
+          <span>
+          {moradores[0]}
+          </span>
+          <span>
+          {moradores[1]}
+          </span>
+        </C.Apto>
+
         <D.Item style={{width:'40px', height: '40px'}} onClick={() => setModal(false)} >
           <Icon icon={x} size={20} style={{color:'black'}} />
         </D.Item>
