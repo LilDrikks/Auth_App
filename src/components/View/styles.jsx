@@ -43,6 +43,9 @@ export const CardApto = styled.div`
       rgba(255, 255, 255, 0)
     );
   }
+  div{
+    width: 100%;
+  }
   p {
     padding: 4px;
   }
@@ -80,4 +83,14 @@ export const Filter = styled.div`
   }
 `;
 
-export const editButton = styled.button``;
+export const RowMorador = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  button{
+    &::before{
+      display: none;
+    }
+  }
+`;

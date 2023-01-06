@@ -7,7 +7,7 @@ export const AuthProvider = ({children}) => {
   const [user, setUser] = useState();
   const [data, setData] = useState([])
   const [modal, setModal] = useState(false)
-  const [moradores, setMoradores] = useState(null)
+  const [morador, setMorador] = useState(null)
   
   const handleGetAptos = async () => {
     const dados = await getAptos()
@@ -33,7 +33,7 @@ export const AuthProvider = ({children}) => {
 
   return (
     <AuthContext.Provider
-      value={{setUser, signed: user ? true : false , signout, data,setModal, modal, setMoradores, moradores }}
+      value={{setUser, signed: user ? true : false , signout, data,setModal, modal, setMorador, morador }}
     >
     {children}
     </AuthContext.Provider>

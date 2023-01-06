@@ -1,20 +1,20 @@
 import React, { useState } from "react";
+import useAuth from "../../hooks/useAuth";
 import * as C from "./styles";
 import * as D from "../ItensSideBar/styles";
 import { x } from "react-icons-kit/feather/x";
 import { pencil } from "react-icons-kit/icomoon/pencil";
 import Icon from "react-icons-kit";
-import useAuth from "../../hooks/useAuth";
 import Input from "../Input";
+import TabsDemo from "../Tabs";
 
 function Modal() {
-  const { setModal, moradores, setMoradores } = useAuth();
-  const [edit, setEdit] = useState({ state: false, id: "", nome: "" });
-  console.log(edit);
+
   return (
     <C.ModalApto>
-      <C.ModalContainer>
-        <C.Apto>
+        <TabsDemo />
+
+        {/* <C.Apto>
           <span>{moradores[0]}</span>
           <span>{moradores[1]}</span>
         </C.Apto>
@@ -52,8 +52,7 @@ function Modal() {
           onClick={() => setModal(false)}
         >
           <Icon icon={x} size={20} style={{ color: "black" }} />
-        </D.Item>
-      </C.ModalContainer>
+        </D.Item> */}
     </C.ModalApto>
   );
 }

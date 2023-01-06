@@ -7,7 +7,7 @@ import { pencil } from "react-icons-kit/icomoon/pencil";
 import Icon from "react-icons-kit";
 
 export function View1() {
-  const { data, setModal, moradores, setMoradores } = useAuth();
+  const { data, setModal, moradores, setMorador } = useAuth();
 
   const [filter, setFilter] = useState("");
 
@@ -18,8 +18,8 @@ export function View1() {
 
   const aptoFilter = data.filter((apto) => filtro(apto, filter));
 
-  const editMoradores = (apto, bloco, moradores) => {
-    setMoradores([apto, bloco, moradores])
+  const editMoradores = (apto, bloco, nome, id) => {
+    setMorador([apto, bloco, nome, id])
     
     setModal(true);
   };
@@ -44,17 +44,19 @@ export function View1() {
                 {apto.apto} {apto.bloco}
               </h3>
               {apto.moradores.map((morador, index) => (
-                <p key={index}>{morador.nome}</p>
+                <C.RowMorador>
+                  <p key={index}>{morador.nome}</p>
+                  <D.Item
+                  style={{ width: "26px", height: "26px" }}
+                  onClick={() =>
+                    editMoradores(apto.apto, apto.bloco, morador.nome, morador._id)
+                  }
+                >
+                  <Icon icon={pencil} size={12} style={{ color: "black" }} />
+                </D.Item>
+                </C.RowMorador>
               ))}
             </div>
-            <D.Item
-              style={{ width: "40px", height: "40px" }}
-              onClick={() =>
-                editMoradores(apto.apto, apto.bloco, apto.moradores)
-              }
-            >
-              <Icon icon={pencil} size={20} style={{ color: "black" }} />
-            </D.Item>
           </C.CardApto>
         ))}
       </C.containerAptos>
