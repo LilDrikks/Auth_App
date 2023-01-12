@@ -5,9 +5,11 @@ import Button from "../../components/Button";
 import useAuth from "../../hooks/useAuth";
 import Body from "../../components/Body";
 import Modal from "../../components/modalApto";
+import { useSelector } from "react-redux";
 
 function Home() {
-  const { signout, modal } = useAuth();
+  const {modal} = useSelector(state => state)
+  const { signout } = useAuth();
   const navigate = useNavigate();
 
   return (

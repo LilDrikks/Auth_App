@@ -5,9 +5,12 @@ import useAuth from "../../hooks/useAuth";
 import * as D from "../ItensSideBar/styles";
 import { x } from "react-icons-kit/feather/x";
 import Icon from "react-icons-kit";
+import { useDispatch } from "react-redux";
+import { closeModal } from "../../redux/reducers/modal";
 
 const TabsDemo = () => {
-  const { setModal, morador, setMorador } = useAuth();
+  const dispatch = useDispatch()
+  const { morador, setMorador } = useAuth();
   const [edit, setEdit] = useState({ state: false, id: "", nome: "" });
 
   return (
@@ -19,7 +22,7 @@ const TabsDemo = () => {
           </Tabs.Trigger>
           <D.Item
             style={{ width: "32px", height: "32px" }}
-            onClick={() => setModal(false)}
+            onClick={() => dispatch(closeModal())}
           >
             <Icon icon={x} size={20} style={{ color: "black" }} />
           </D.Item>

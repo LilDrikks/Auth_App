@@ -1,21 +1,14 @@
 import { createContext, useEffect, useState } from "react";
-import { getAptos } from "../requests/axios";
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({children}) => {
   const [user, setUser] = useState();
-  const [data, setData] = useState([])
   const [modal, setModal] = useState(false)
   const [morador, setMorador] = useState(null)
-  
-  const handleGetAptos = async () => {
-    const dados = await getAptos()
-    setData(dados.aptos)
-  }
+
 
   useEffect(() => {
-    handleGetAptos()
     const userToken = localStorage.getItem("user_token");
     if(userToken){
       const userLog = JSON.parse(userToken)
@@ -33,7 +26,7 @@ export const AuthProvider = ({children}) => {
 
   return (
     <AuthContext.Provider
-      value={{setUser, signed: user ? true : false , signout, data,setModal, modal, setMorador, morador }}
+      value={{setUser, signed: user ? true : false , signout,setModal, modal, setMorador, morador }}
     >
     {children}
     </AuthContext.Provider>

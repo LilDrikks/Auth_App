@@ -5,9 +5,14 @@ import Input from "../Input";
 import useAuth from "../../hooks/useAuth";
 import { pencil } from "react-icons-kit/icomoon/pencil";
 import Icon from "react-icons-kit";
+import { useSelector, useDispatch } from "react-redux";
+import { openModal } from "../../redux/reducers/modal";
 
 export function View1() {
-  const { data, setModal, moradores, setMorador } = useAuth();
+  const { setMorador } = useAuth();
+  const {aptos} = useSelector(state => state)
+  const dispatch = useDispatch()
+  const dados = aptos.data ? aptos.data.aptos : [];
 
   const [filter, setFilter] = useState("");
 
@@ -16,12 +21,11 @@ export function View1() {
       morador.nome.toLowerCase().includes(nome.toLowerCase())
     ) || String(apto.apto).includes(filter);
 
-  const aptoFilter = data.filter((apto) => filtro(apto, filter));
+  const aptoFilter = dados.filter((apto) => filtro(apto, filter));
 
   const editMoradores = (apto, bloco, nome, id) => {
     setMorador([apto, bloco, nome, id])
-    
-    setModal(true);
+    dispatch(openModal())
   };
 
   return (
@@ -44,8 +48,8 @@ export function View1() {
                 {apto.apto} {apto.bloco}
               </h3>
               {apto.moradores.map((morador, index) => (
-                <C.RowMorador>
-                  <p key={index}>{morador.nome}</p>
+                <C.RowMorador key={index}>
+                  <p >{morador.nome}</p>
                   <D.Item
                   style={{ width: "26px", height: "26px" }}
                   onClick={() =>
