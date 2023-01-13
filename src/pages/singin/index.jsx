@@ -1,40 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import * as C from "./styles";
-import useAuth from "../../hooks/useAuth"
 import { Link, useNavigate } from "react-router-dom";
-import { signInPut } from "../../requests/axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getAptos } from "../../redux/reducers/aptos";
+import { fetchSignIn } from "../../redux/reducers/signIn";
 
 function SignIn() {
-  const {setUser} = useAuth();
   const navigate = useNavigate();
-
+  const dispatch = useDispatch()
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, seteError] = useState("");
-  
 
   const handleLogin = async () => {
     if (!email || !senha) {
       seteError("Preencha todos os campos");
       return;
     }
-
-    const createUser = await signInPut(email, senha);
-
-    if(createUser.err){
-      seteError(createUser.err)
-      return
-    }
-    if(createUser.token){
-      const {token, email} = createUser
-      setUser({email:email, token: token})
-      localStorage.setItem("user_token", JSON.stringify({email,token}));
-      navigate("/home");
-    }
+    dispatch(fetchSignIn(email, senha))
+    navigate("/home");
   };
-
+  
   return (
     <C.Container>
       <C.Label>Login</C.Label>

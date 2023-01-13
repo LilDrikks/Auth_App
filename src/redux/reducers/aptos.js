@@ -29,14 +29,12 @@ export const { fetchError, fetchStarted, fetchSuccess } = aptos.actions;
 
 export default aptos.reducer;
 
-export const getAptos = (url) => async (dispatch) => {
+export const getAptos = () => async (dispatch) => {
   try {
     dispatch(fetchStarted());
-    const res = await axios.get(`${url}/user/aptos`);
+    const res = await axios.get('https://deploy-node-lildrikks.vercel.app/user/aptos');
     await dispatch(fetchSuccess(res.data));
-    return res.data;
   } catch (err) {
-    await dispatch(fetchError(err.message));
-    return err.response.data.err;
+    await dispatch(fetchError(err.response.data.err));
   }
 };

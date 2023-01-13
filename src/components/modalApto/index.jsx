@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import useAuth from "../../hooks/useAuth";
 import * as C from "./styles";
 import * as D from "../ItensSideBar/styles";
 import { x } from "react-icons-kit/feather/x";

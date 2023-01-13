@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import "./styles.css";
-import useAuth from "../../hooks/useAuth";
 import * as D from "../ItensSideBar/styles";
 import { x } from "react-icons-kit/feather/x";
 import Icon from "react-icons-kit";
@@ -10,15 +9,13 @@ import { closeModal } from "../../redux/reducers/modal";
 
 const TabsDemo = () => {
   const dispatch = useDispatch()
-  const { morador, setMorador } = useAuth();
-  const [edit, setEdit] = useState({ state: false, id: "", nome: "" });
 
   return (
     <Tabs.Root className="TabsRoot" defaultValue="tab1">
       <Tabs.List className="TabsList" aria-label="Manage your account">
         <div className="TabsTrigger">
           <Tabs.Trigger  value="tab1">
-            {`${morador[0]} ${morador[1]}`}
+            {``}
           </Tabs.Trigger>
           <D.Item
             style={{ width: "32px", height: "32px" }}
@@ -34,7 +31,7 @@ const TabsDemo = () => {
           <label className="Label" htmlFor="name">
             Nome
           </label>
-          <input className="Input" id="name" defaultValue={morador[2]} />
+          <input className="Input" id="name" defaultValue={''} />
         </fieldset>
         <fieldset className="Fieldset">
           <label className="Label" htmlFor="username">
@@ -43,7 +40,7 @@ const TabsDemo = () => {
           <input
             className="Input"
             id="username"
-            defaultValue={morador[3]}
+            defaultValue={''}
           />
         </fieldset>
         <div

@@ -22,12 +22,3 @@ export const signUpPost = async (email, password) => {
     return err.response.data.err
   }
 }
-
-export const getAptos = async () => {
-  try {
-    const res = await axios.get(`${url}/user/aptos`)
-    return res.data
-  } catch (err) {
-    return err.response.data.err
-  }
-}

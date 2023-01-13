@@ -1,14 +1,22 @@
 import RoutesApp from "./routers";
 import GlobalStyle from "./styles/global";
-import { AuthProvider } from "./contexts/auth";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { autoLogin } from "./redux/reducers/signIn";
 function App() {
+  const dispatch = useDispatch()
+  const { value } = useSelector(state => state.signIn.meta.localStorage)
+  useEffect(() => {
+    dispatch(autoLogin())
+  }, [value])
 
 
   return (
-    <AuthProvider>
+    <div>
       <RoutesApp />
       <GlobalStyle />
-    </AuthProvider>
+    </div>
+
   )
 };
 

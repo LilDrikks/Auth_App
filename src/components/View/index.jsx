@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import * as C from "./styles";
 import * as D from "../ItensSideBar/styles";
 import Input from "../Input";
-import useAuth from "../../hooks/useAuth";
+
 import { pencil } from "react-icons-kit/icomoon/pencil";
 import Icon from "react-icons-kit";
 import { useSelector, useDispatch } from "react-redux";
 import { openModal } from "../../redux/reducers/modal";
 
 export function View1() {
-  const { setMorador } = useAuth();
   const {aptos} = useSelector(state => state)
   const dispatch = useDispatch()
   const dados = aptos.data ? aptos.data.aptos : [];
@@ -24,7 +23,6 @@ export function View1() {
   const aptoFilter = dados.filter((apto) => filtro(apto, filter));
 
   const editMoradores = (apto, bloco, nome, id) => {
-    setMorador([apto, bloco, nome, id])
     dispatch(openModal())
   };
 

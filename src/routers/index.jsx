@@ -3,12 +3,11 @@ import { BrowserRouter, Route, Routes} from 'react-router-dom'
 import Home from "../pages/home";
 import SignIn from "../pages/singin";
 import SignUp from "../pages/signup";
-import useAuth from "../hooks/useAuth";
+import { useSelector } from "react-redux";
 
 const Private = ({Item})=> {
-  const {signed} = useAuth();
-
-  return signed > 0 ? <Item /> : <SignIn />
+  const {value} = useSelector(state => state.signIn.meta.localStorage)
+  return value ? <Item /> : <SignIn />
 }
 
 const RoutesApp = ()=> {
