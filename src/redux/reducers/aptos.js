@@ -32,7 +32,9 @@ export default aptos.reducer;
 export const getAptos = () => async (dispatch) => {
   try {
     dispatch(fetchStarted());
-    const res = await axios.get('https://deploy-node-lildrikks.vercel.app/user/aptos');
+    const res = await axios.get(
+      "https://deploy-node-lildrikks.vercel.app/user/aptos"
+    );
     await dispatch(fetchSuccess(res.data));
   } catch (err) {
     await dispatch(fetchError(err.response.data.err));

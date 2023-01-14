@@ -40,12 +40,12 @@ export const LabelError = styled.label`
 `;
 export const Strong = styled.strong`
   cursor: pointer;
-  
-  a{
+
+  a {
     text-decoration: none;
     color: #676767;
-    &:hover{
-    color: #046ee5;
-  }
+    &:hover {
+      color: #046ee5;
+    }
   }
 `;

@@ -12,14 +12,12 @@ export const Container = styled.div`
   position: relative;
 `;
 
-export const Title = styled.h1`
+export const Title = styled.h1``;
 
-`;
-
-export const Header = styled.div`
+export const Header = styled.header`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0px 20px;
-`; 
+`;

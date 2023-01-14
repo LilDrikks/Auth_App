@@ -7,13 +7,12 @@ import Modal from "../../components/modalApto";
 import { useSelector } from "react-redux";
 
 function Home() {
-  const {modal} = useSelector(state => state)
-  console.log(modal)
+  const { modal } = useSelector((state) => state);
   const navigate = useNavigate();
 
   const signout = () => {
     localStorage.removeItem("token");
-    navigate(0)
+    navigate(0);
   };
 
   return (
@@ -24,9 +23,8 @@ function Home() {
           <Button Text="Sair" onClick={() => signout()} />
         </C.Header>
         <Body />
-        {modal ? <Modal  /> : null}
+        {modal ? <Modal /> : null}
       </C.Container>
-      
     </>
   );
 }

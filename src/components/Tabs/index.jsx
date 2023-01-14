@@ -1,21 +1,47 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import "./styles.css";
 import * as D from "../ItensSideBar/styles";
 import { x } from "react-icons-kit/feather/x";
 import Icon from "react-icons-kit";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../redux/reducers/modal";
+import { fetchUpdate } from "../../redux/reducers/editMoradores";
 
 const TabsDemo = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const { edit } = useSelector((state) => state);
+  const { apto, bloco, nome, id, data } = edit;
+
+  const [name, setName] = useState("");
+  const [stateId, setStateId] = useState("");
+  const [notificacao, setNotificacao] = useState("");
+
+  //guarda um valor que não muda ao ser re-renderizado o componente
+  const timeOutRef = useRef();
+
+  function handleClick() {
+
+    if(data.message) setNotificacao(true)
+
+    clearTimeout(timeOutRef.current)
+
+    timeOutRef.current = setTimeout(() => {
+      setNotificacao(false)
+    }, 1000);
+  }
+
+  useEffect(() => {
+    setName(nome);
+    setStateId(id);
+  }, []);
 
   return (
     <Tabs.Root className="TabsRoot" defaultValue="tab1">
       <Tabs.List className="TabsList" aria-label="Manage your account">
         <div className="TabsTrigger">
-          <Tabs.Trigger  value="tab1">
-            {``}
+          <Tabs.Trigger value="tab1">
+            {apto} {bloco}
           </Tabs.Trigger>
           <D.Item
             style={{ width: "32px", height: "32px" }}
@@ -31,7 +57,12 @@ const TabsDemo = () => {
           <label className="Label" htmlFor="name">
             Nome
           </label>
-          <input className="Input" id="name" defaultValue={''} />
+          <input
+            className="Input"
+            id="name"
+            value={name}
+            onChange={({ target }) => setName(target.value)}
+          />
         </fieldset>
         <fieldset className="Fieldset">
           <label className="Label" htmlFor="username">
@@ -39,15 +70,32 @@ const TabsDemo = () => {
           </label>
           <input
             className="Input"
-            id="username"
-            defaultValue={''}
+            id="id"
+            value={stateId}
+            onChange={({ target }) => setId(target.value)}
           />
         </fieldset>
         <div
           style={{ display: "flex", marginTop: 20, justifyContent: "flex-end" }}
         >
-          <button className="Button green">Save changes</button>
+          <button
+            onClick={() => {
+              dispatch(
+                fetchUpdate({
+                  nome: name,
+                  apto: apto,
+                  bloco: bloco,
+                  id: stateId,
+                })
+              );
+              handleClick()
+            }}
+            className="Button green"
+          >
+            Salvar mudança
+          </button>
         </div>
+        {notificacao && <p className="notificacao">{data.message}</p>}
       </Tabs.Content>
     </Tabs.Root>
   );

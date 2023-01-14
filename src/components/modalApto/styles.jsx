@@ -33,71 +33,71 @@ export const Moradores = styled.ul`
   border: 1px solid;
   height: 100%;
   max-height: 300px;
-  button{
-    position:static;
-    align-self:center;
+  button {
+    position: static;
+    align-self: center;
   }
-  .button{
+  .button {
     p {
-    visibility: hidden;
-    width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    left: 0;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s;
-    font-size: 14px;
-    @media (max-width: 500px) {
-      bottom: 110%;
-      left: 50%;
+      visibility: hidden;
+      width: 120px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 0;
+      left: 0;
+      margin-left: -60px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 14px;
+      @media (max-width: 500px) {
+        bottom: 110%;
+        left: 50%;
+      }
+    }
+
+    p::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent;
+      @media (max-width: 500px) {
+        top: 100%;
+        left: 50%;
+      }
+    }
+
+    &:hover p {
+      visibility: visible;
+      opacity: 1;
     }
   }
 
-  p::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-    @media (max-width: 500px) {
-      top: 100%;
-      left: 50%;
-    }
-  }
-
-  &:hover p {
-    visibility: visible;
-    opacity: 1;
-  }
-  }
-
-  li{
+  li {
     border-bottom: 1px solid;
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    button{
-      position:static;
+    button {
+      position: static;
     }
   }
-`
+`;
 export const Apto = styled.h3`
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  cursor:default;
+  cursor: default;
   width: 44px;
   height: 44px;
   margin: 10px;

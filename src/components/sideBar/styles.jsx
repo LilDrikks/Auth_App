@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SideBar = styled.div`
+export const SideBar = styled.ul`
   margin-bottom: 20px;
   padding: 10px;
   width: 90px;
@@ -14,9 +14,9 @@ export const SideBar = styled.div`
   border-radius: 5px;
   @media (max-width: 500px) {
     flex-direction: row;
-     width: 100%;
-     margin: 0;
-     margin-bottom: 20px;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 20px;
     justify-content: center;
   }
 `;

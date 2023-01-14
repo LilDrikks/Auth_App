@@ -8,12 +8,11 @@ import Input from "../Input";
 import TabsDemo from "../Tabs";
 
 function Modal() {
-
   return (
     <C.ModalApto>
-        <TabsDemo />
+      <TabsDemo />
 
-        {/* <C.Apto>
+      {/* <C.Apto>
           <span>{moradores[0]}</span>
           <span>{moradores[1]}</span>
         </C.Apto>

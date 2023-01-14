@@ -9,13 +9,13 @@ export const Input = styled.input`
   background-color: #ebe8e8;
   border: none;
   color: black;
-  &::placeholder{
+  &::placeholder {
     color: #747272;
   }
-  &:focus{
+  &:focus {
     background-color: #747272;
-    &::placeholder{
-    color: white;
-  }
+    &::placeholder {
+      color: white;
+    }
   }
 `;

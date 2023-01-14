@@ -9,7 +9,7 @@ import { fetchSignIn } from "../../redux/reducers/signIn";
 
 function SignIn() {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, seteError] = useState("");
@@ -19,10 +19,10 @@ function SignIn() {
       seteError("Preencha todos os campos");
       return;
     }
-    dispatch(fetchSignIn(email, senha))
+    dispatch(fetchSignIn(email, senha));
     navigate("/home");
   };
-  
+
   return (
     <C.Container>
       <C.Label>Login</C.Label>

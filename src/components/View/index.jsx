@@ -4,15 +4,18 @@ import * as D from "../ItensSideBar/styles";
 import Input from "../Input";
 
 import { pencil } from "react-icons-kit/icomoon/pencil";
+import { x } from "react-icons-kit/feather/x";
 import Icon from "react-icons-kit";
 import { useSelector, useDispatch } from "react-redux";
 import { openModal } from "../../redux/reducers/modal";
+import { getData } from "../../redux/reducers/editMoradores";
 
 export function View1() {
-  const {aptos} = useSelector(state => state)
-  const dispatch = useDispatch()
+  const { aptos } = useSelector((state) => state);
+  const dispatch = useDispatch();
   const dados = aptos.data ? aptos.data.aptos : [];
 
+  const [edit, setEdit] = useState(false)
   const [filter, setFilter] = useState("");
 
   const filtro = (apto, nome) =>
@@ -23,8 +26,14 @@ export function View1() {
   const aptoFilter = dados.filter((apto) => filtro(apto, filter));
 
   const editMoradores = (apto, bloco, nome, id) => {
-    dispatch(openModal())
+    dispatch(getData({ nome, apto, bloco, id }));
+    dispatch(openModal());
   };
+
+  function handleClickAdd() {
+    setEdit(true)
+    console.log(edit)
+  }
 
   return (
     <C.View>
@@ -47,18 +56,26 @@ export function View1() {
               </h3>
               {apto.moradores.map((morador, index) => (
                 <C.RowMorador key={index}>
-                  <p >{morador.nome}</p>
-                  <D.Item
-                  style={{ width: "26px", height: "26px" }}
-                  onClick={() =>
-                    editMoradores(apto.apto, apto.bloco, morador.nome, morador._id)
-                  }
-                >
-                  <Icon icon={pencil} size={12} style={{ color: "black" }} />
-                </D.Item>
+                  <p>{morador.nome}</p>
+                  <button
+                    className="edit"
+                    onClick={() =>
+                      editMoradores(
+                        apto.apto,
+                        apto.bloco,
+                        morador.nome,
+                        morador._id
+                      )
+                    }
+                  >
+                    <Icon icon={pencil} size={16} style={{ color: '#000000c5' }} />
+                  </button>
                 </C.RowMorador>
               ))}
             </div>
+            <button className="add" onClick={handleClickAdd}>
+              <Icon icon={x} size={32} style={{ color: '#000000c5' }} />
+            </button>
           </C.CardApto>
         ))}
       </C.containerAptos>

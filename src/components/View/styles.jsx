@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import background from "/src/background.jpg";
-export const View = styled.div`
+
+
+export const View = styled.main`
   width: 100%;
   margin: 20px 20px 0px 0px;
   border-radius: 5px;
@@ -21,6 +23,8 @@ export const Subtitle = styled.h2`
 
 export const CardApto = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   border-radius: 5px;
   color: white;
@@ -43,7 +47,7 @@ export const CardApto = styled.div`
       rgba(255, 255, 255, 0)
     );
   }
-  div{
+  div {
     width: 100%;
   }
   p {
@@ -51,6 +55,22 @@ export const CardApto = styled.div`
   }
   @media (max-width: 900px) {
     width: 100%;
+  }
+  .edit,.add{
+      width: 32px;
+      height: 32px;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 100px;
+      &:hover{
+        cursor: pointer;
+      }
+  }
+  .add{
+    transform: rotate(45deg);
   }
 `;
 
@@ -88,8 +108,8 @@ export const RowMorador = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  button{
-    &::before{
+  button {
+    &::before {
       display: none;
     }
   }

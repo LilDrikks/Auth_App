@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Item = styled.button`
+export const Item = styled.li`
   position: relative;
   width: 60px;
   height: 60px;
