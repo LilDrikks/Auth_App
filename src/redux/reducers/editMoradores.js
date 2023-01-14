@@ -33,7 +33,7 @@ export const fetchUpdate = ({ apto, bloco, id, nome }) => async (dispatch) => {
   const body = { apto:apto, bloco:bloco, id:id, nome:nome }
 
   try {
-    const res = await axios.put('http://localhost:4000/user/aptos', body)
+    const res = await axios.put('https://deploy-node-lildrikks.vercel.app/user/aptos', body)
     await dispatch(putData(res.data))
   } catch (error) {
     await dispatch(putData(error.message))
