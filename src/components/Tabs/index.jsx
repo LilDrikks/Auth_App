@@ -16,19 +16,16 @@ const TabsDemo = () => {
   const [name, setName] = useState("");
   const [stateId, setStateId] = useState("");
   const [notificacao, setNotificacao] = useState("");
-
   //guarda um valor que não muda ao ser re-renderizado o componente
   const timeOutRef = useRef();
-
   function handleClick() {
+    setNotificacao(true);
 
-    if(data.message) setNotificacao(true)
-
-    clearTimeout(timeOutRef.current)
+    clearTimeout(timeOutRef.current);
 
     timeOutRef.current = setTimeout(() => {
-      setNotificacao(false)
-    }, 1000);
+      setNotificacao(false);
+    }, 2000);
   }
 
   useEffect(() => {
@@ -72,7 +69,7 @@ const TabsDemo = () => {
             className="Input"
             id="id"
             value={stateId}
-            onChange={({ target }) => setId(target.value)}
+            onChange={({ target }) => setStateId(target.value)}
           />
         </fieldset>
         <div
@@ -88,14 +85,20 @@ const TabsDemo = () => {
                   id: stateId,
                 })
               );
-              handleClick()
+              handleClick();
             }}
             className="Button green"
           >
             Salvar mudança
           </button>
         </div>
-        {notificacao && <p className="notificacao">{data.message}</p>}
+        {notificacao && (
+          <p className="notificacao">
+            {data === "Request failed with status code 500"
+              ? "Não foi possivel alterar os dados"
+              : data}
+          </p>
+        )}
       </Tabs.Content>
     </Tabs.Root>
   );
