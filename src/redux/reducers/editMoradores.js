@@ -29,11 +29,33 @@ export const { getData, putData } = edit.actions;
 export default edit.reducer;
 
 
-export const fetchUpdate = ({ apto, bloco, id, nome }) => async (dispatch) => {
-  const body = { apto:apto, bloco:bloco, id:id, nome:nome }
+export const fetchUpdate = ({ apto, bloco, id, nome, token }) => async (dispatch) => {
+  const body = { apto, bloco, id, nome, token }
 
   try {
-    const res = await axios.put('https://deploy-node-lildrikks.vercel.app/user/aptos', body)
+    const res = await axios.put('https://deploy-node-lildrikks.vercel.app/user/aptos/update/morador', body)
+    await dispatch(putData(res.data.data))
+  } catch (error) {
+    await dispatch(putData(error.message))
+  }
+}
+
+export const fetchAddNewMorador = ({apto, bloco, nome, token}) => async (dispatch) => {
+  const body = { apto, bloco, nome, token }
+
+  try {
+    const res = await axios.put('https://deploy-node-lildrikks.vercel.app/user/aptos/add/morador', body)
+    await dispatch(putData(res.data.data))
+  } catch (error) {
+    await dispatch(putData(error.message))
+  }
+}
+
+export const fetchRemoveMorador = ({apto, bloco, nome, token}) => async (dispatch) => {
+  const body = { apto, bloco, nome, token }
+
+  try {
+    const res = await axios.put('https://deploy-node-lildrikks.vercel.app/user/aptos/remove/morador', body)
     await dispatch(putData(res.data.data))
   } catch (error) {
     await dispatch(putData(error.message))

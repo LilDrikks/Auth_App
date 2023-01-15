@@ -31,7 +31,7 @@ export const CardApto = styled.div`
   padding: 10px;
   flex-grow: 1;
   width: 40%;
-  height: 160px;
+  height: 100%;
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.1),
@@ -85,6 +85,13 @@ export const containerAptos = styled.div`
     height: 540px;
     overflow: scroll;
   }
+  .notificacao{
+    position: fixed;
+    width: 100vw;
+    align-self: center;
+    top: 50vw;
+    right: 0;
+  }
 `;
 
 export const Filter = styled.div`
@@ -104,7 +111,14 @@ export const Filter = styled.div`
 `;
 
 export const RowMorador = styled.div`
+p{
   width: 100%;
+}
+  div{
+    display: flex;
+    gap: 8px;
+    justify-content: end;
+  }
   display: flex;
   justify-content: space-between;
   padding: 10px;

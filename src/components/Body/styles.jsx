@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Body = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100%;
   margin: 0px 20px;
   display: flex;

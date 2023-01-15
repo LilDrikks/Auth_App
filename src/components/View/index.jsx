@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import * as C from "./styles";
-import * as D from "../ItensSideBar/styles";
 import Input from "../Input";
 
 import { pencil } from "react-icons-kit/icomoon/pencil";
@@ -8,14 +7,21 @@ import { x } from "react-icons-kit/feather/x";
 import Icon from "react-icons-kit";
 import { useSelector, useDispatch } from "react-redux";
 import { openModal } from "../../redux/reducers/modal";
-import { getData } from "../../redux/reducers/editMoradores";
+import { fetchAddNewMorador, fetchRemoveMorador, getData } from "../../redux/reducers/editMoradores";
+import { useNavigate } from "react-router-dom";
 
 export function View1() {
-  const { aptos } = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  const { aptos, signIn, edit } = useSelector((state) => state);
+  const token = signIn.meta.localStorage.value
   const dados = aptos.data ? aptos.data.aptos : [];
 
-  const [edit, setEdit] = useState(false)
+  const timeOutRef = useRef();
+  const navigate = useNavigate();
+
+  const [notificacao, setNotificacao] = useState("");
+
   const [filter, setFilter] = useState("");
 
   const filtro = (apto, nome) =>
@@ -25,14 +31,27 @@ export function View1() {
 
   const aptoFilter = dados.filter((apto) => filtro(apto, filter));
 
+  const handleClickDelete = (apto, bloco, nome) => {
+    setNotificacao(true);
+
+    clearTimeout(timeOutRef.current);
+
+    timeOutRef.current = setTimeout(() => {
+      setNotificacao(false);
+      navigate(0)
+    }, 1000);
+    console.log(apto, bloco, nome, token)
+    dispatch(fetchRemoveMorador({ apto, bloco, nome, token }))
+  }
+
   const editMoradores = (apto, bloco, nome, id) => {
     dispatch(getData({ nome, apto, bloco, id }));
     dispatch(openModal());
   };
 
-  function handleClickAdd() {
-    setEdit(true)
-    console.log(edit)
+  const handleClickAdd = (apto, bloco) => {
+    dispatch(getData({ apto, bloco }));
+    dispatch(openModal());
   }
 
   return (
@@ -57,27 +76,50 @@ export function View1() {
               {apto.moradores.map((morador, index) => (
                 <C.RowMorador key={index}>
                   <p>{morador.nome}</p>
-                  <button
-                    className="edit"
-                    onClick={() =>
-                      editMoradores(
-                        apto.apto,
-                        apto.bloco,
-                        morador.nome,
-                        morador._id
-                      )
-                    }
-                  >
-                    <Icon icon={pencil} size={16} style={{ color: '#000000c5' }} />
-                  </button>
+
+                  <div>
+                    <button
+                      className="edit"
+                      onClick={() =>
+                        handleClickDelete(
+                          apto.apto,
+                          apto.bloco,
+                          morador.nome,
+                        )
+                      }
+                    >
+                      <Icon icon={x} size={16} style={{ color: '#000000c5' }} />
+                    </button>
+                    <button
+                      className="edit"
+                      onClick={() =>
+                        editMoradores(
+                          apto.apto,
+                          apto.bloco,
+                          morador.nome,
+                          morador._id
+                        )
+                      }
+                    >
+                      <Icon icon={pencil} size={16} style={{ color: '#000000c5' }} />
+                    </button>
+                  </div>
                 </C.RowMorador>
               ))}
+              
             </div>
-            <button className="add" onClick={handleClickAdd}>
+            <button className="add" onClick={() => handleClickAdd(apto.apto, apto.bloco)}>
               <Icon icon={x} size={32} style={{ color: '#000000c5' }} />
             </button>
           </C.CardApto>
         ))}
+        {notificacao && (
+                    <p className="notificacao">
+                      {edit.data === "Request failed with status code 500"
+                        ? "Não foi possivel alterar os dados"
+                        : edit.data}
+                    </p>
+              )}
       </C.containerAptos>
     </C.View>
   );

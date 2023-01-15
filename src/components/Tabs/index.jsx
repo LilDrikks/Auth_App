@@ -6,30 +6,61 @@ import { x } from "react-icons-kit/feather/x";
 import Icon from "react-icons-kit";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../redux/reducers/modal";
-import { fetchUpdate } from "../../redux/reducers/editMoradores";
+import { fetchAddNewMorador, fetchUpdate } from "../../redux/reducers/editMoradores";
+import { useNavigate } from "react-router-dom";
 
 const TabsDemo = () => {
   const dispatch = useDispatch();
-  const { edit } = useSelector((state) => state);
+  const { edit, signIn } = useSelector((state) => state);
+  const token = signIn.meta.localStorage.value
   const { apto, bloco, nome, id, data } = edit;
-
   const [name, setName] = useState("");
   const [stateId, setStateId] = useState("");
   const [notificacao, setNotificacao] = useState("");
+  
   //guarda um valor que não muda ao ser re-renderizado o componente
   const timeOutRef = useRef();
-  function handleClick() {
+  const navigate = useNavigate();
+
+  function handleClick({
+    nome: name,
+    apto: apto,
+    bloco: bloco,
+    id: stateId,
+  }) {
     setNotificacao(true);
 
     clearTimeout(timeOutRef.current);
 
     timeOutRef.current = setTimeout(() => {
       setNotificacao(false);
-    }, 2000);
+      navigate(0)
+    }, 1000);
+
+    
+    if (id) {
+      dispatch(
+        fetchUpdate({
+          nome: name,
+          apto: apto,
+          bloco: bloco,
+          id: stateId,
+          token: token
+        })
+      );
+    } else {
+      dispatch(fetchAddNewMorador({
+        nome: name,
+        apto: apto,
+        bloco: bloco,
+        token: token
+      }))
+    }
   }
 
+  let nomeTrue = nome ? nome : ''
   useEffect(() => {
-    setName(nome);
+    setName(nomeTrue);
     setStateId(id);
   }, []);
 
@@ -49,7 +80,7 @@ const TabsDemo = () => {
         </div>
       </Tabs.List>
       <Tabs.Content className="TabsContent" value="tab1">
-        <p className="Text">Mude o nome do morador</p>
+        <p className="Text">{id ? 'Mude o nome do morador' : 'Insira o novo morador'}</p>
         <fieldset className="Fieldset">
           <label className="Label" htmlFor="name">
             Nome
@@ -62,34 +93,32 @@ const TabsDemo = () => {
           />
         </fieldset>
         <fieldset className="Fieldset">
-          <label className="Label" htmlFor="username">
+          {id && <label className="Label" htmlFor="username">
             #ID
-          </label>
-          <input
+          </label>}
+          {id && <input
             className="Input"
             id="id"
             value={stateId}
             onChange={({ target }) => setStateId(target.value)}
-          />
+          />}
         </fieldset>
         <div
           style={{ display: "flex", marginTop: 20, justifyContent: "flex-end" }}
         >
           <button
             onClick={() => {
-              dispatch(
-                fetchUpdate({
-                  nome: name,
-                  apto: apto,
-                  bloco: bloco,
-                  id: stateId,
-                })
-              );
-              handleClick();
+
+              handleClick({
+                nome: name,
+                apto: apto,
+                bloco: bloco,
+                id: stateId,
+              });
             }}
             className="Button green"
           >
-            Salvar mudança
+            {id ? 'Salvar mudança' : 'Adicionar Morador'}
           </button>
         </div>
         {notificacao && (

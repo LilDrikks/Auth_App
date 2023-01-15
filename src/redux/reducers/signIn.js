@@ -60,5 +60,5 @@ export const fetchSignIn = (email, password) => async (dispatch) => {
 export const autoLogin = () => async (dispatch, getState) => {
   const state = getState();
   const token = state.signIn.meta.localStorage.value;
-  if (token) await dispatch(getAptos());
+  if (token) await dispatch(getAptos({token}));
 };
