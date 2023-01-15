@@ -39,7 +39,7 @@ export function View1() {
     timeOutRef.current = setTimeout(() => {
       setNotificacao(false);
       navigate(0)
-    }, 1000);
+    }, 1800);
     console.log(apto, bloco, nome, token)
     dispatch(fetchRemoveMorador({ apto, bloco, nome, token }))
   }

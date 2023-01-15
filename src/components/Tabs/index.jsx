@@ -35,7 +35,7 @@ const TabsDemo = () => {
     timeOutRef.current = setTimeout(() => {
       setNotificacao(false);
       navigate(0)
-    }, 1000);
+    }, 1800);
 
     
     if (id) {
